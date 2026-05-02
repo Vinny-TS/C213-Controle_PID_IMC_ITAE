@@ -503,8 +503,8 @@ class PaginaControlePID(QWidget):
             "Imagens PNG (*.png);;Todos os Arquivos (*.*)"
         )
         if filename:
-            self.figure.savefig(filename)
-            self.file_path_label.setText(f"Gráfico exportado: {filename}")
+            self.figura.savefig(filename)
+            QMessageBox.information(self, "Sucesso", f"Gráfico exportado com sucesso para:\n{filename}")
 
     def set_processing_mode(self, mode):
         """Define o modo de sintonia e bloqueia/desbloqueia campos."""

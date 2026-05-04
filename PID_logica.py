@@ -48,7 +48,6 @@ class logicaPID():
         eqm = np.sqrt(np.sum((y_modelo - y_experimental) ** 2) / len(y_modelo))
         return eqm
     
-    # Método de Ziegler-Nichols
     # Método IMC (Internal Model Control)
     @staticmethod
     def metodo_imc(k, tau, theta, lambda_c=None):
@@ -89,7 +88,9 @@ class logicaPID():
         Cs = ctrl.series(PID, sistemaControle)
         amplitudeDegrau = sp
 
+        # Simulação do degrau e correção da Amplitude pelo SetPoint
         [Tempo, Amplitude] = ctrl.step_response(ctrl.feedback(Cs))
+        Amplitude = Amplitude * sp
 
         infos_PID = ctrl.step_info(ctrl.feedback(Cs))
         regimePermanente = Amplitude[-1]
